@@ -196,25 +196,40 @@ export default function Home() {
           </p>
         </div>
 
+        {/* Filter Tabs */}
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex bg-gray-100 dark:bg-gray-800 rounded-2xl p-1">
+            <button className="px-6 py-3 bg-indigo-600 text-white rounded-xl text-base font-medium shadow-sm">
+              Most Booked
+            </button>
+            <button className="px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-xl text-base font-medium transition-colors">
+              Popular
+            </button>
+            <button className="px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-xl text-base font-medium transition-colors">
+              Summer Sale
+            </button>
+          </div>
+        </div>
+
         {/* Services Grid */}
         <section id="services" className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-indigo-200 dark:hover:border-indigo-600 cursor-pointer"
+                className="group bg-white dark:bg-gray-800 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-indigo-100 dark:hover:border-indigo-800 cursor-pointer hover:-translate-y-1"
               >
                 {/* Service Tag */}
                 {service.tag && (
-                  <div className="bg-indigo-600 text-white px-4 py-2 text-sm font-medium">
+                  <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-1 text-xs font-semibold rounded-br-2xl inline-block">
                     {service.tag}
                   </div>
                 )}
                 
-                <div className="p-8">
+                <div className="p-6">
                   {/* Service Icon */}
-                  <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <span className="text-3xl">{service.title === 'Dry Cleaning' ? '👔' : 
+                  <div className="w-14 h-14 bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-2xl">{service.title === 'Dry Cleaning' ? '🧸' : 
                                                    service.title === 'Ironing Services' ? '👚' :
                                                    service.title === 'Car Cleaning' ? '🚗' :
                                                    service.title === 'Instant Help' ? '⚡' :
@@ -222,21 +237,21 @@ export default function Home() {
                   </div>
 
                   {/* Service Info */}
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
                     {service.title}
                   </h3>
                   
-                  <p className="text-base text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed line-clamp-2">
                     {service.description}
                   </p>
 
                   {/* Pricing */}
-                  <div className="flex items-center space-x-3 mb-4">
-                    <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <div className="flex items-baseline space-x-2 mb-3">
+                    <span className="text-xl font-bold text-gray-900 dark:text-white">
                       {service.price}
                     </span>
                     {service.originalPrice && (
-                      <span className="text-lg text-gray-500 line-through">
+                      <span className="text-sm text-gray-500 line-through">
                         {service.originalPrice}
                       </span>
                     )}
@@ -244,32 +259,30 @@ export default function Home() {
 
                   {/* Rating & Reviews */}
                   {service.rating > 0 && (
-                    <div className="flex items-center space-x-2 mb-4">
-                      <div className="flex items-center space-x-1">
-                        <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                        <span className="text-base font-medium text-gray-900 dark:text-white">
-                          {service.rating}
-                        </span>
-                      </div>
-                      <span className="text-base text-gray-500 dark:text-gray-400">
-                        ({service.reviews} reviews)
+                    <div className="flex items-center space-x-1 mb-3">
+                      <StarIcon className="h-4 w-4 text-yellow-400 fill-current" />
+                      <span className="text-sm font-medium text-gray-900 dark:text-white">
+                        {service.rating}
+                      </span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        ({service.reviews})
                       </span>
                     </div>
                   )}
 
                   {/* Time & Provider */}
-                  <div className="flex items-center justify-between text-base text-gray-600 dark:text-gray-400 mb-6">
+                  <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-4">
                     <span className="flex items-center space-x-1">
-                      <ClockIcon className="h-5 w-5" />
+                      <ClockIcon className="h-4 w-4" />
                       <span>{service.time}</span>
                     </span>
-                    <span className="font-medium text-indigo-600 dark:text-indigo-400">
+                    <span className="text-xs font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 px-2 py-1 rounded-full">
                       by {service.provider}
                     </span>
                   </div>
 
                   {/* Book Button */}
-                  <button className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-4 rounded-xl text-base font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors group-hover:scale-105 transform duration-200">
+                  <button className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-3 rounded-2xl text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-all duration-200 group-hover:shadow-lg">
                     + Book Now
                   </button>
                 </div>
@@ -287,14 +300,20 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {howItWorks.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-20 h-20 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-3xl">{step.icon}</span>
+              <div key={index} className="text-center group">
+                <div className="relative">
+                  <div className="w-16 h-16 bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-indigo-900/30 dark:to-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-2xl">{step.icon}</span>
+                  </div>
+                  {/* Step Number */}
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                    {step.step}
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   {step.title}
                 </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto">
+                <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto">
                   {step.description}
                 </p>
               </div>
